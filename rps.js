@@ -7,8 +7,9 @@ function computerPlay() {
 function playRound(playerSelection, computerSelection) {
     playerSelection = capitalize(playerSelection);    // allows taking input of any capitalization
 
-    const loseString = (win, lose) => "You lose. " + win + " beats " + lose + ".";
-    const winString = (win, lose) => "You win. " + win + " beats " + lose + ".";
+
+    const loseString = (win, lose) => `You lose. "${ win } beats "${ lose }".`;
+    const winString = (win, lose) => `You win. "${ win } beats "${ lose }".`;
     const tieString = "It's a tie.";
 
     if (playerSelection === "Rock") {
