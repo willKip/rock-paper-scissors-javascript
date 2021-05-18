@@ -4,67 +4,62 @@ function computerPlay() {
     return options[Math.floor(Math.random() * 3)];  // return random integer from 0 to 2; chooses random option
 }
 
-function playRound(playerSelection, computerSelection) {
-    playerSelection = capitalize(playerSelection);    // allows taking input of any capitalization
-
-    const loseString = (win, lose) => `You lose. ${ win } beats ${ lose }.`;
-    const winString = (win, lose) => `You win. ${ win } beats ${ lose }.`;
-    const tieString = "It's a tie.";
-
-    if (playerSelection === "Rock") {
-        if (computerSelection === "Paper") {
-            return loseString(computerSelection, playerSelection);
-        } else if (computerSelection === "Scissors") {
-            return winString(playerSelection, computerSelection);
-        } else {
-            return tieString;
-        }
-    } else if (playerSelection === "Paper") {
-        if (computerSelection === "Scissors") {
-            return loseString(computerSelection, playerSelection);
-        } else if (computerSelection === "Rock") {
-            return winString(playerSelection, computerSelection);
-        } else {
-            return tieString;
-        }
-    } else if (playerSelection === "Scissors") {
-        if (computerSelection === "Rock") {
-            return loseString(computerSelection, playerSelection);
-        } else if (computerSelection === "Paper") {
-            return winString(playerSelection, computerSelection);
-        } else {
-            return tieString;
-        }
+function resultLogic(playerSelection, computerSelection) {
+    switch (playerSelection) {
+        case "Rock":
+            switch (computerSelection) {
+                case "Paper": return "lose";
+                case "Scissors": return "win";
+                default: return "tie";
+            }
+        case "Paper":
+            switch (computerSelection) {
+                case "Scissors": return "lose";
+                case "Rock": return "win";
+                default: return "tie";
+            }
+        case "Scissors":
+            switch (computerSelection) {
+                case "Rock": return "lose";
+                case "Paper": return "win";
+                default: return "tie";
+            }
     }
 }
 
-/*
-function game() {
-    const games = 5;
+function playRound(playerInput) {
+    let computerInput = computerPlay();
+    let result = resultLogic(playerInput, computerInput);
 
-    for (let i=0; i<games; i++) {
-        const playerSelection = window.prompt("Choose your weapon.", "rock");
-        const computerSelection = computerPlay();
+    switch (result) {
+        case "win":
+            resultWindow.setAttribute("style", "background-color: turquoise");
+            resultWindow.textContent = `You win. ${ playerInput } beats ${ computerInput }.`;
+            break;
+        case "lose":
+            resultWindow.setAttribute("style", "background-color: orange");
+            resultWindow.textContent = `You lose. ${ computerInput } beats ${ playerInput }.`;
+            break;
+        case "tie":
+            resultWindow.setAttribute("style", "background-color: gray");
+            resultWindow.textContent = "It's a tie.";
+            break;
     }
 }
-*/
 
-function capitalize(string) {
-    return string[0].toUpperCase() + string.slice(1);
-}
+const resultWindow = document.querySelector("#resultsWindow");
 
-const buttons = document.querySelectorAll('button');
+// Defining button behaviour
+const rockBtn = document.querySelector("#rockSelect");
+const paperBtn = document.querySelector("#paperSelect");
+const scissorsBtn = document.querySelector("#scissorsSelect");
 
-buttons.forEach((button) => {
-    button.addEventListener('click', () => {
-        if (button.id === "rockSelect")
-            console.log(playRound("rock", computerPlay()));
-        else if (button.id === "paperSelect")
-            console.log(playRound("paper", computerPlay()));
-        else if (button.id === "scissorsSelect")
-            console.log(playRound("scissors", computerPlay()));
-        // alert(button.id);
-    });
+rockBtn.addEventListener('click', () => {
+    playRound("Rock");
 });
-
-// game();
+paperBtn.addEventListener('click', () => {
+    playRound("Paper");
+});
+scissorsBtn .addEventListener('click', () => {
+    playRound("Scissors");
+});
