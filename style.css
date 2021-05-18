@@ -1,4 +1,9 @@
-#resultsWindow {
+#scoreWindow {
+    height: 30px;
+    width: 500px;
+}
+
+#resultWindow {
     height: 30px;
     width: 500px;
 }
