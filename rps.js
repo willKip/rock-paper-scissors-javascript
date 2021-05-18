@@ -7,9 +7,8 @@ function computerPlay() {
 function playRound(playerSelection, computerSelection) {
     playerSelection = capitalize(playerSelection);    // allows taking input of any capitalization
 
-
-    const loseString = (win, lose) => `You lose. "${ win } beats "${ lose }".`;
-    const winString = (win, lose) => `You win. "${ win } beats "${ lose }".`;
+    const loseString = (win, lose) => `You lose. ${ win } beats ${ lose }.`;
+    const winString = (win, lose) => `You win. ${ win } beats ${ lose }.`;
     const tieString = "It's a tie.";
 
     if (playerSelection === "Rock") {
@@ -39,18 +38,33 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
+/*
 function game() {
     const games = 5;
 
     for (let i=0; i<games; i++) {
         const playerSelection = window.prompt("Choose your weapon.", "rock");
         const computerSelection = computerPlay();
-        console.log(playRound(playerSelection, computerSelection));
     }
 }
+*/
 
 function capitalize(string) {
     return string[0].toUpperCase() + string.slice(1);
 }
 
-game();
+const buttons = document.querySelectorAll('button');
+
+buttons.forEach((button) => {
+    button.addEventListener('click', () => {
+        if (button.id === "rockSelect")
+            console.log(playRound("rock", computerPlay()));
+        else if (button.id === "paperSelect")
+            console.log(playRound("paper", computerPlay()));
+        else if (button.id === "scissorsSelect")
+            console.log(playRound("scissors", computerPlay()));
+        // alert(button.id);
+    });
+});
+
+// game();
