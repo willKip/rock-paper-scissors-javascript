@@ -1,11 +1,12 @@
 # Rock-Paper-Scissors: Javascript Edition
 A simple implementation of Rock-Paper-Scissors in Javascript.
 
-Project includes a skeleton html file, which refers to rps.js, the main logic.
+The computer makes a hidden, randomized choice between rock, paper, and scissors, 
+and the player enters input by pressing the corresponding button.
 
-By default, it goes through 5 rounds of rock paper scissors, in which the computer makes 
-a randomized choice, and the player enters input through a prompt() call.
+The results are displayed on the screen after every round, and when either the computer or the player
+reaches 5 points, the winner is announced and scores are reset.
 
-Choice input must be a full word (e.g. Rock, paper, SCISSORS); any capitalization works.
+There is currently a very basic level of styling involved; this project aims to demonstrate Javascript capabilities.
 
-Refer to the console to see the results.
+https://willkip.github.io/rock-paper-scissors-javascript/
